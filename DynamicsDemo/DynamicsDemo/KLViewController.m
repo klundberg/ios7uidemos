@@ -96,7 +96,6 @@
 //    [self.gravity setGravityDirection:CGVectorMake(-1.0, 1.0)];
 //    [self.gravity setMagnitude:10];
 
-
     self.collision = [[UICollisionBehavior alloc] initWithItems:@[]];
     UIView *toolbar = self.navigationController.toolbar;
     [self.collision setTranslatesReferenceBoundsIntoBoundaryWithInsets:UIEdgeInsetsMake(-200, 0, toolbar.frame.size.height, 0)];
@@ -110,8 +109,11 @@
 
 - (void)addCollisionBoundaryForItem:(UIView *)item toBehavior:(UICollisionBehavior *)behavior withIdentifier:(NSString *)identifier
 {
-//    cgrecta
     CGRect frame = [self.view convertRect:item.bounds fromView:item];
+//    UIBezierPath *path = [UIBezierPath bezierPathWithRect:frame];
+//    [path applyTransform:item.transform];
+
+
     CGPoint topleft = CGPointApplyAffineTransform(frame.origin, item.transform);
     CGPoint topright = CGPointApplyAffineTransform(CGPointMake(CGRectGetMaxX(frame), CGRectGetMinY(frame)), item.transform);
     CGPoint bottomleft = CGPointApplyAffineTransform(CGPointMake(CGRectGetMinX(frame), CGRectGetMaxY(frame)), item.transform);
